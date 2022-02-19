@@ -10,7 +10,7 @@ const Home: NextPage = () => {
 			<TopBar />
 			<MidBar />
 			<div className="mt-8 border-t-2">
-				<div className="mx-[200px] grid grid-cols-3 mt-5">
+				<div className="mx-[200px] flex flex-row items-start justify-center mt-5">
 					<LeftBar />
 					<MainContents />
 				</div>

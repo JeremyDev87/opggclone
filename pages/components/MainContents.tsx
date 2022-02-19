@@ -3,7 +3,7 @@ import DetailContents from "./DetailContents";
 
 const MainContents: NextPage = () => {
 	return (
-		<div className="col-span-2  shadow-sm ">
+		<div className="shadow-sm w-[690px]">
 			<div className="flex flex-row items-center justify-start border-[1px] shadow-sm text-[12px] pl-2 space-x-1">
 				<span className="px-3 py-2 text-blue-600 font-bold border-b-2 border-blue-600">
 					전체

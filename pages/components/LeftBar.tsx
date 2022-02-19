@@ -2,7 +2,7 @@ import { NextPage } from "next";
 
 const LeftBar: NextPage = () => {
 	return (
-		<div className="flex flex-col space-y-2 justify-center items-center">
+		<div className="flex flex-col space-y-2 justify-center items-center w-[300px]">
 			<div className="bg-gray-100 border-[1px] border-gray-300 shadow-sm w-11/12 h-[124px] flex flex-row items-center justify-start">
 				<div className="px-3 w-2/5 flex justify-center">
 					<img
@@ -57,8 +57,8 @@ const LeftBar: NextPage = () => {
 						<span className="text-gray-500">자유랭크 5vs5</span>
 					</div>
 				</div>
-				<div className="divide-y-2">
-					<div className="flex flex-row items-center justify-around text-xs text-gray-400">
+				<div className="divide-y-2 ">
+					<div className="flex flex-row items-center justify-around text-xs text-gray-400 py-1">
 						<div>
 							<img
 								src="https://opgg-static.akamaized.net/images/lol/champion/Viktor.png?image=q_auto,f_auto,w_auto&v=1644981085437&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"
@@ -82,7 +82,7 @@ const LeftBar: NextPage = () => {
 							<span>25 게임</span>
 						</div>
 					</div>
-					<div className="flex flex-row items-center justify-around text-xs text-gray-400">
+					<div className="flex flex-row items-center justify-around text-xs text-gray-400 py-1">
 						<div>
 							<img
 								src="https://opgg-static.akamaized.net/images/lol/champion/Viktor.png?image=q_auto,f_auto,w_auto&v=1644981085437&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"
@@ -106,7 +106,7 @@ const LeftBar: NextPage = () => {
 							<span>25 게임</span>
 						</div>
 					</div>
-					<div className="flex flex-row items-center justify-around text-xs text-gray-400">
+					<div className="flex flex-row items-center justify-around text-xs text-gray-400 py-1">
 						<div>
 							<img
 								src="https://opgg-static.akamaized.net/images/lol/champion/Viktor.png?image=q_auto,f_auto,w_auto&v=1644981085437&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"
@@ -130,7 +130,7 @@ const LeftBar: NextPage = () => {
 							<span>25 게임</span>
 						</div>
 					</div>
-					<div className="flex flex-row items-center justify-around text-xs text-gray-400">
+					<div className="flex flex-row items-center justify-around text-xs text-gray-400 py-1">
 						<div>
 							<img
 								src="https://opgg-static.akamaized.net/images/lol/champion/Viktor.png?image=q_auto,f_auto,w_auto&v=1644981085437&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"
@@ -154,7 +154,7 @@ const LeftBar: NextPage = () => {
 							<span>25 게임</span>
 						</div>
 					</div>
-					<div className="flex flex-row items-center justify-around text-xs text-gray-400">
+					<div className="flex flex-row items-center justify-around text-xs text-gray-400 py-1">
 						<div>
 							<img
 								src="https://opgg-static.akamaized.net/images/lol/champion/Viktor.png?image=q_auto,f_auto,w_auto&v=1644981085437&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"
@@ -178,7 +178,7 @@ const LeftBar: NextPage = () => {
 							<span>25 게임</span>
 						</div>
 					</div>
-					<div className="flex flex-row items-center justify-around text-xs text-gray-400">
+					<div className="flex flex-row items-center justify-around text-xs text-gray-400 py-1">
 						<div>
 							<img
 								src="https://opgg-static.akamaized.net/images/lol/champion/Viktor.png?image=q_auto,f_auto,w_auto&v=1644981085437&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"

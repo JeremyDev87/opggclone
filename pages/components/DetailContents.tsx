@@ -2,15 +2,15 @@ import { NextPage } from "next";
 
 const DetailContents: NextPage = () => {
 	return (
-		<div className="h-[96px] bg-[#b0ceea] border-1px border-[#a1b8cd] mt-4">
+		<div className="h-[96px] bg-[#b0ceea] border-1px border-[#a1b8cd] mt-4 shadow-sm">
 			<div className="text-xs flex flx-row items-center justify-between">
-				<div className="flex flex-col space-y-1">
+				<div className="flex flex-col space-y-1 text-gray-500 ml-3">
 					<div className="flex flex-col items-center">
 						<span className="font-medium">솔랭</span>
 						<span>2일 전</span>
 					</div>
 					<div className="flex flex-col items-center">
-						<span className="border-t-2 pt-1 text-blue-500">
+						<span className="border-t-[1px] border-gray-400 pt-1 text-blue-500">
 							승리
 						</span>
 						<span>16분 6초</span>
@@ -127,14 +127,14 @@ const DetailContents: NextPage = () => {
 						<span>2</span>
 					</div>
 				</div>
-				<div className="flex space-x-4">
+				<div className="flex space-x-8">
 					<div className="flex flex-col space-y-[1px] justify-center text-gray-500 text-[11px] tracking-[-0.42px]">
 						<div className="flex space-x-1">
 							<img
 								src="https://opgg-static.akamaized.net/images/lol/champion/Gnar.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								GEN Doran
 							</span>
 						</div>
@@ -143,7 +143,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Karthus.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								GEN Peanut
 							</span>
 						</div>
@@ -152,7 +152,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Akshan.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								GEN Chovy
 							</span>
 						</div>
@@ -161,7 +161,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Caitlyn.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								GEN Ruler
 							</span>
 						</div>
@@ -170,7 +170,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Lux.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								GEN Lehends
 							</span>
 						</div>
@@ -181,7 +181,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Gnar.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								DRX Kingen
 							</span>
 						</div>
@@ -190,7 +190,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Karthus.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								DRX Pyosik
 							</span>
 						</div>
@@ -199,7 +199,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Akshan.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								DRX Xeka
 							</span>
 						</div>
@@ -208,7 +208,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Caitlyn.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								DRX Deft
 							</span>
 						</div>
@@ -217,7 +217,7 @@ const DetailContents: NextPage = () => {
 								src="https://opgg-static.akamaized.net/images/lol/champion/Lux.png?image=q_auto,f_webp,w_auto&v=1645189214748"
 								className="aspect-square h-[16px]"
 							/>
-							<span className="truncate max-w-[46px]">
+							<span className="truncate max-w-[52px]">
 								DRX Beryl
 							</span>
 						</div>
