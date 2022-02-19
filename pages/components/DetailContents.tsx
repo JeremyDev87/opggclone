@@ -127,7 +127,7 @@ const DetailContents: NextPage = () => {
 						<span>2</span>
 					</div>
 				</div>
-				<div className="flex space-x-8">
+				<div className="flex space-x-2">
 					<div className="flex flex-col space-y-[1px] justify-center text-gray-500 text-[11px] tracking-[-0.42px]">
 						<div className="flex space-x-1">
 							<img
