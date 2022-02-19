@@ -1,14 +1,15 @@
 import { NextPage } from "next";
 import MostChamp from "./MostChamp";
+import { useEffect, useState } from "react";
 
 const LeftBar: NextPage = (props) => {
 	return (
-		<div className="flex flex-col space-y-2 justify-center items-center w-[300px]">
+		<div className="flex flex-col space-y-2 justify-center items-center w-[298px] mr-3">
 			{props.summoner.leagues
 				? props.summoner.leagues.map((value) => {
 						return (
 							<div
-								className="bg-gray-100 border-[1px] border-gray-300 shadow-sm w-11/12 h-[124px] flex flex-row items-center justify-start"
+								className="bg-gray-100 border-[1px] border-gray-300 shadow-sm h-[124px] w-[298px] flex flex-row items-center justify-start"
 								key={value.tierRank.name}
 							>
 								<div className="px-3 w-2/5 flex justify-center">
@@ -72,64 +73,9 @@ const LeftBar: NextPage = (props) => {
 						);
 				  })
 				: ""}
-			<MostChamp props={props.summoner.name} />
-			<div className="bg-gray-100 border-[1px] border-gray-300 shadow-sm w-11/12 text-xs">
-				<div className="w-full bg-white py-2">
-					<span className="ml-3 font-bold text-gray-500">
-						최근 7일간 랭크 승률
-					</span>
-				</div>
-				<div className="divide-y-2 pr-2">
-					<div className="grid grid-cols-6 items-center py-1">
-						<img
-							src="https://opgg-static.akamaized.net/images/lol/champion/LeeSin.png?image=q_auto,f_auto,w_auto&v=1644981085621&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"
-							className="w-[32px] rounded-full mx-auto"
-						/>
-						<span className="font-bold text-left">리 신</span>
-						<div className="text-gray-500 text-center">38%</div>
-						<div className="col-span-3 w-full grid grid-cols-10 text-gray-50">
-							<div className="bg-blue-500 col-span-4 rounded-l-sm shadow-sm text-left p-1">
-								3승
-							</div>
-							<div className="bg-red-500 col-span-6 rounded-r-sm shadow-sm text-right p-1">
-								5패
-							</div>
-						</div>
-					</div>
-					<div className="grid grid-cols-6 items-center py-1">
-						<img
-							src="https://opgg-static.akamaized.net/images/lol/champion/LeeSin.png?image=q_auto,f_auto,w_auto&v=1644981085621&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"
-							className="w-[32px] rounded-full mx-auto"
-						/>
-						<span className="font-bold text-left">리 신</span>
-						<div className="text-gray-500 text-center">38%</div>
-						<div className="col-span-3 w-full grid grid-cols-10 text-gray-50">
-							<div className="bg-blue-500 col-span-4 rounded-l-sm shadow-sm text-left p-1">
-								3승
-							</div>
-							<div className="bg-red-500 col-span-6 rounded-r-sm shadow-sm text-right p-1">
-								5패
-							</div>
-						</div>
-					</div>
-					<div className="grid grid-cols-6 items-center py-1">
-						<img
-							src="https://opgg-static.akamaized.net/images/lol/champion/LeeSin.png?image=q_auto,f_auto,w_auto&v=1644981085621&name=Chrome&version=98.0.4758.80&major=98&name=MacOS&version=10.15.7"
-							className="w-[32px] rounded-full mx-auto"
-						/>
-						<span className="font-bold text-left">리 신</span>
-						<div className="text-gray-500 text-center">38%</div>
-						<div className="col-span-3 w-full grid grid-cols-10 text-gray-50">
-							<div className="bg-blue-500 col-span-4 rounded-l-sm shadow-sm text-left p-1">
-								3승
-							</div>
-							<div className="bg-red-500 col-span-6 rounded-r-sm shadow-sm text-right p-1">
-								5패
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			{props.summoner.name ? (
+				<MostChamp userID={props.summoner.name} />
+			) : null}
 		</div>
 	);
 };
