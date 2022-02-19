@@ -4,24 +4,36 @@ import MainContents from "./components/MainContents";
 import MidBar from "./components/MidBar";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import PreSearch from "./components/PreSearch";
 
 const Home: NextPage = () => {
 	const [summonerName, setSummonerName] = useState(["Hide on bush"]);
 	const [searchData, setSearchData] = useState([]);
-	async function searchSummoner() {
+	const [previewData, setPreviewData] = useState([]);
+
+	async function searchSummoner(ID) {
 		const { data } = await axios.get(
-			`https://codingtest.op.gg/api/summoner/${summonerName}`
+			`https://codingtest.op.gg/api/summoner/${ID}`
 		);
 		setSearchData(data.summoner);
 	}
+	async function searchID(preID) {
+		setSummonerName(preID);
+		if (preID) {
+			const { data } = await axios.get(
+				`https://codingtest.op.gg/api/summoner/${preID}`
+			);
+			setPreviewData(data.summoner);
+		}
+	}
 	const keyPress = (e) => {
 		if (e.key === "Enter") {
-			searchSummoner();
+			searchSummoner(summonerName);
 		}
 	};
 	useEffect(() => {
 		(async () => {
-			searchSummoner();
+			summonerName ? searchSummoner(summonerName) : null;
 		})();
 	}, []);
 	return (
@@ -40,19 +52,21 @@ const Home: NextPage = () => {
 							placeholder="소환사명, 챔피언···"
 							id="inputID"
 							onChange={(e) => {
-								setSummonerName(e.target.value);
+								searchID(e.target.value);
 							}}
 							onKeyPress={keyPress}
 						/>
 						<img
 							src="https://s-lol-web.op.gg/images/icon/icon-gg.svg"
 							className="w-6 absolute mr-2 cursor-pointer"
-							onClick={searchSummoner}
+							onClick={() => {
+								searchSummoner(summonerName);
+							}}
 						/>
 					</div>
-					<div className="bg-red-500 w-[260px] mt-1 p-2 rounded-sm shadow-sm">
-						asdf
-					</div>
+					{previewData.name && summonerName ? (
+						<PreSearch preID={previewData} summoner={searchData} />
+					) : null}
 				</div>
 			</div>
 			<MidBar summoner={searchData} />

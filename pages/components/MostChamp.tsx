@@ -4,15 +4,11 @@ import { useState, useEffect } from "react";
 import RecentWinRate from "./RecentWinRate";
 
 const MostChamp: NextPage = (props) => {
-	console.log(props);
 	const [mostChamp, setMostChamp] = useState([]);
 	useEffect(() => {
 		getMostData();
 	}, [props]);
 	async function getMostData() {
-		console.log(
-			`https://codingtest.op.gg/api/summoner/${props.userID}/mostInfo/`
-		);
 		const { data } = await axios.get(
 			`https://codingtest.op.gg/api/summoner/${props.userID}/mostInfo/`
 		);
