@@ -73,7 +73,7 @@ const Home: NextPage = () => {
 			<div className="mt-8 border-t-2">
 				<div className="mx-[200px] flex flex-row items-start justify-center mt-5">
 					<LeftBar summoner={searchData} />
-					<MainContents />
+					<MainContents summoner={searchData} />
 				</div>
 			</div>
 		</div>
