@@ -17,7 +17,7 @@ const MainContents: NextPage = (props) => {
 
 	useEffect(() => {
 		getMatchData();
-	}, []);
+	}, [props.summoner]);
 	return (
 		<div className="shadow-sm w-[690px]">
 			<div className="flex flex-row items-center justify-start border-[1px] shadow-sm text-[12px] pl-2 space-x-1">
