@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { clsMaker } from "../../libs/utils";
 
-const PreSearch: NextPage = (props) => {
+const SearchHistory: NextPage = (props) => {
 	const [preID, setpreID] = useState([]);
 	useEffect(() => {
 		setpreID(props.preID);
@@ -36,4 +36,4 @@ const PreSearch: NextPage = (props) => {
 		</div>
 	);
 };
-export default PreSearch;
+export default SearchHistory;

@@ -5,6 +5,7 @@ import MidBar from "./components/MidBar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import PreSearch from "./components/PreSearch";
+import SearchHistory from "./components/SearchHistory";
 
 const Home: NextPage = () => {
 	const [summonerName, setSummonerName] = useState(["Hide on bush"]);
@@ -15,6 +16,10 @@ const Home: NextPage = () => {
 		const { data } = await axios.get(
 			`https://codingtest.op.gg/api/summoner/${ID}`
 		);
+		let getHistory = JSON.parse(localStorage.getItem("searchHistory"));
+		let arr = getHistory ? [...getHistory, ID] : ID;
+		localStorage.setItem("searchHistory", JSON.stringify(arr));
+
 		setSearchData(data.summoner);
 	}
 	async function searchID(preID) {
@@ -35,6 +40,7 @@ const Home: NextPage = () => {
 		(async () => {
 			summonerName ? searchSummoner(summonerName) : null;
 		})();
+		return localStorage.removeItem("searchHistory");
 	}, []);
 	return (
 		<div className="h-[1819px]">
@@ -66,7 +72,9 @@ const Home: NextPage = () => {
 					</div>
 					{previewData.name && summonerName ? (
 						<PreSearch preID={previewData} summoner={searchData} />
-					) : null}
+					) : (
+						<SearchHistory preID={previewData} />
+					)}
 				</div>
 			</div>
 			<MidBar summoner={searchData} />
