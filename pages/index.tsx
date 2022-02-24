@@ -6,21 +6,24 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import PreSearch from "./components/PreSearch";
 import SearchHistory from "./components/SearchHistory";
+import { clsMaker } from "../libs/utils";
 
 const Home: NextPage = () => {
 	const [summonerName, setSummonerName] = useState(["Hide on bush"]);
-	const [searchData, setSearchData] = useState([]);
-	const [previewData, setPreviewData] = useState([]);
+	const [searchData, setSearchData] = useState("");
+	const [previewData, setPreviewData] = useState("");
 
 	async function searchSummoner(ID) {
-		const { data } = await axios.get(
-			`https://codingtest.op.gg/api/summoner/${ID}`
-		);
-		let getHistory = JSON.parse(localStorage.getItem("searchHistory"));
-		let arr = getHistory ? [...getHistory, ID] : ID;
-		localStorage.setItem("searchHistory", JSON.stringify(arr));
+		if (ID) {
+			const { data } = await axios.get(
+				`https://codingtest.op.gg/api/summoner/${ID}`
+			);
+			let getHistory = JSON.parse(localStorage.getItem("searchHistory"));
+			let arr = getHistory ? [...getHistory, ID] : [ID];
+			localStorage.setItem("searchHistory", JSON.stringify(arr));
 
-		setSearchData(data.summoner);
+			setSearchData(data.summoner);
+		}
 	}
 	async function searchID(preID) {
 		setSummonerName(preID);
@@ -37,9 +40,6 @@ const Home: NextPage = () => {
 		}
 	};
 	useEffect(() => {
-		(async () => {
-			summonerName ? searchSummoner(summonerName) : null;
-		})();
 		return localStorage.removeItem("searchHistory");
 	}, []);
 	return (
@@ -77,11 +77,11 @@ const Home: NextPage = () => {
 					)}
 				</div>
 			</div>
-			<MidBar summoner={searchData} />
-			<div className="mt-8 border-t-2">
+			{searchData ? <MidBar summoner={searchData} /> : ""}
+			<div className={clsMaker("mt-8", searchData ? "border-t-2" : "")}>
 				<div className="mx-[200px] flex flex-row items-start justify-center mt-5">
-					<LeftBar summoner={searchData} />
-					<MainContents summoner={searchData} />
+					{searchData ? <LeftBar summoner={searchData} /> : ""}
+					{searchData ? <MainContents summoner={searchData} /> : ""}
 				</div>
 			</div>
 		</div>

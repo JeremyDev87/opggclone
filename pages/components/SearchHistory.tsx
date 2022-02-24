@@ -2,12 +2,12 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 
 const PreSearch: NextPage = (props) => {
-	const [searchHistory, setSearchHistory] = useState();
+	const [searchHistory, setSearchHistory] = useState([]);
 
 	useEffect(() => {
 		let getHistory = JSON.parse(localStorage.getItem("searchHistory"));
 		setSearchHistory(getHistory);
-	}, [props]);
+	}, [props.preID]);
 	return (
 		<div className="bg-gray-50 border-[1px]  border-gray-500 w-[260px] mt-1 rounded-sm shadow-sm flex flex-col items-center">
 			<div className="flex items-center justify-around text-sm w-full border-b-2">

@@ -7,7 +7,7 @@ const MostChamp: NextPage = (props) => {
 	const [mostChamp, setMostChamp] = useState([]);
 	useEffect(() => {
 		getMostData();
-	}, [props]);
+	}, [props.userID]);
 	async function getMostData() {
 		const { data } = await axios.get(
 			`https://codingtest.op.gg/api/summoner/${props.userID}/mostInfo/`
