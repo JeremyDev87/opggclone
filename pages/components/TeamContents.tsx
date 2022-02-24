@@ -1,6 +1,7 @@
 import axios from "axios";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
+import { clsMaker } from "../../libs/utils";
 
 const TeamContents: NextPage = (props) => {
 	const [teamData, setTeamData] = useState([]);
@@ -8,7 +9,7 @@ const TeamContents: NextPage = (props) => {
 		const { data } = await axios.get(
 			`https://codingtest.op.gg/api/summoner/${props.summoner}/matchDetail/${props.gameId}`
 		);
-		console.log(data);
+		console.log(props.summoner);
 		setTeamData(data);
 	}
 
@@ -24,7 +25,13 @@ const TeamContents: NextPage = (props) => {
 								<div className="flex space-x-1" key={index}>
 									<img
 										src={value.champion.imageUrl}
-										className="aspect-square h-[16px]"
+										className={clsMaker(
+											"aspect-square h-[16px]",
+											props.summoner ===
+												value.summonerName
+												? "rounded-full"
+												: ""
+										)}
 									/>
 									<span className="truncate max-w-[52px]">
 										{value.summonerName}
@@ -41,7 +48,13 @@ const TeamContents: NextPage = (props) => {
 								<div className="flex space-x-1" key={index}>
 									<img
 										src={value.champion.imageUrl}
-										className="aspect-square h-[16px]"
+										className={clsMaker(
+											"aspect-square h-[16px]",
+											props.summoner ===
+												value.summonerName
+												? "rounded-full"
+												: ""
+										)}
 									/>
 									<span className="truncate max-w-[52px]">
 										{value.summonerName}

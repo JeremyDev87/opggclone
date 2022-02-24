@@ -123,7 +123,6 @@ const MainContents: NextPage = (props) => {
 				}),
 				games: data.games,
 			};
-			console.log(setData);
 			setMatchData(setData);
 		}
 	}
@@ -183,20 +182,20 @@ const MainContents: NextPage = (props) => {
 					</span>
 					<div className="flex flex-row items-center justify-around">
 						<div
-							className={clsMaker(
-								"border border-[15px] border-blue-400 aspect-square p-4 rounded-full ",
-								matchData
-									? matchData.winRate >= 25
-										? "border-r-red-400"
-										: matchData.winRate >= 50
-										? "border-r-red-400 border-b-red-400"
-										: matchData.winRate >= 75
-										? "border-r-red-400 border-b-red-400 border-l-red-400"
-										: ""
-									: null
-							)}
+							className="flex items-center justify-center aspect-square p-4 rounded-full relative w-[90px] bg-blue-500"
+							style={{
+								background: `conic-gradient(blue ${
+									matchData ? matchData.winRate * 3.6 : 0
+								}deg,red ${
+									matchData ? matchData.winRate * 3.6 : 0
+								}deg ${
+									matchData
+										? 360 - matchData.winRate * 3.6
+										: 360
+								}deg`,
+							}}
 						>
-							<span className="text-xs font-bold">
+							<span className="text-xs font-bold absolute bg-gray-100 rounded-full aspect-square w-[75px] flex items-center justify-center">
 								{matchData ? matchData.winRate : null}%
 							</span>
 						</div>
