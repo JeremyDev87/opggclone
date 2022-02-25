@@ -131,7 +131,7 @@ const MainContents: NextPage = (props) => {
 		getMatchData();
 	}, [props.summoner, gameType]);
 	return (
-		<div className="shadow-sm w-[690px]">
+		<div className="shadow-sm min-w-[690px] max-w-[690px]">
 			<div className="flex flex-row items-center justify-start border-[1px] shadow-sm text-[12px] pl-2 space-x-1">
 				<span
 					className={clsMaker(
@@ -182,11 +182,11 @@ const MainContents: NextPage = (props) => {
 					</span>
 					<div className="flex flex-row items-center justify-around">
 						<div
-							className="flex items-center justify-center aspect-square p-4 rounded-full relative w-[90px] bg-blue-500"
+							className="flex items-center justify-center aspect-square p-4 rounded-full relative w-[90px]"
 							style={{
-								background: `conic-gradient(blue ${
+								background: `conic-gradient(#1f8ecd ${
 									matchData ? matchData.winRate * 3.6 : 0
-								}deg,red ${
+								}deg,#ee5a52 ${
 									matchData ? matchData.winRate * 3.6 : 0
 								}deg ${
 									matchData
@@ -195,7 +195,7 @@ const MainContents: NextPage = (props) => {
 								}deg`,
 							}}
 						>
-							<span className="text-xs font-bold absolute bg-gray-100 rounded-full aspect-square w-[75px] flex items-center justify-center">
+							<span className="text-xs font-bold absolute bg-gray-100 rounded-full aspect-square w-[64px] flex items-center justify-center">
 								{matchData ? matchData.winRate : null}%
 							</span>
 						</div>

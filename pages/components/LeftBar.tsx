@@ -65,9 +65,6 @@ const LeftBar: NextPage = (props) => {
 											: 0}
 										%
 									</span>
-									<span className="text-xs text-gray-400">
-										{/* 렝가의 배짱꾼들 */}
-									</span>
 								</div>
 							</div>
 						);

@@ -9,7 +9,6 @@ const TeamContents: NextPage = (props) => {
 		const { data } = await axios.get(
 			`https://codingtest.op.gg/api/summoner/${props.summoner}/matchDetail/${props.gameId}`
 		);
-		console.log(props.summoner);
 		setTeamData(data);
 	}
 

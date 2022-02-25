@@ -4,12 +4,7 @@ import { clsMaker } from "../../libs/utils";
 
 const RecentWinRate: NextPage = (props) => {
 	return (
-		<div className="bg-gray-100 border-[1px] border-gray-300 shadow-sm text-xs w-full">
-			<div className="w-full bg-white py-2">
-				<span className="ml-3 font-bold text-gray-500">
-					최근 7일간 랭크 승률
-				</span>
-			</div>
+		<div className="bg-[#ededed] border-[1px] border-[#cdd2d2] shadow-sm text-xs w-full">
 			<div className="divide-y-2 pr-2">
 				{props.data
 					? props.data.map((value, index) => {
