@@ -373,7 +373,7 @@ const MainContents: NextPage = (props) => {
 								key={index}
 							>
 								<div className="text-xs flex flx-row items-center justify-between">
-									<div className="flex flex-col items-center space-y-1 text-[#555555] font-[11px] ml-3 w-[70px]">
+									<div className="flex flex-col items-center space-y-1 text-[#555555] font-[11px] ml-3 w-[75px]">
 										<div className="flex flex-col items-center">
 											<span className="font-bold">
 												{value ? value.gameType : ""}
