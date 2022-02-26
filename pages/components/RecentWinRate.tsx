@@ -30,7 +30,7 @@ const RecentWinRate: NextPage = (props) => {
 									</div>
 									<div className="col-span-3 w-full h-[24px] relative">
 										<div
-											className="bg-[#1f8ecd] rounded-l-md shadow-sm absolute h-[20px] left-0"
+											className="bg-[#1f8ecd] rounded-l-md shadow-sm absolute h-[24px] left-0"
 											style={{
 												width: `${Math.round(
 													(value.wins * 100) /
@@ -40,7 +40,7 @@ const RecentWinRate: NextPage = (props) => {
 											}}
 										></div>
 										<div
-											className="bg-[#ee5a52] rounded-r-md shadow-sm absolute h-[20px] right-0"
+											className="bg-[#ee5a52] rounded-r-md shadow-sm absolute h-[24px] right-0"
 											style={{
 												width: `${
 													100 -

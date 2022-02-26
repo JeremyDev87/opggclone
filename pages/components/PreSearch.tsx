@@ -10,9 +10,12 @@ const SearchHistory: NextPage = (props) => {
 	return (
 		<div
 			className={clsMaker(
-				"bg-gray-50 border-[1px]  border-gray-500 w-[260px] mt-1 p-2 rounded-sm shadow-sm flex items-center space-x-3",
+				"bg-gray-50 border-[1px]  border-gray-500 w-[260px] mt-1 p-2 rounded-sm shadow-sm flex items-center space-x-3 cursor-pointer",
 				!preID ? "hidden" : ""
 			)}
+			onClick={() => {
+				props.reUse(preID ? preID.name : null);
+			}}
 		>
 			<img
 				src={preID ? preID.profileImageUrl : ""}

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
-import LeftBar from "./components/LeftBar";
-import MainContents from "./components/MainContents";
-import MidBar from "./components/MidBar";
+import LeftBar from "./LeftBar";
+import MainContents from "./MainContents";
+import MidBar from "./MidBar";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import PreSearch from "./components/PreSearch";
@@ -12,8 +12,8 @@ const Home: NextPage = () => {
 	const [summonerName, setSummonerName] = useState(["Hide on bush"]);
 	const [searchData, setSearchData] = useState("");
 	const [previewData, setPreviewData] = useState("");
-
-	async function searchSummoner(ID) {
+	const [searchFocus, setSearchFocus] = useState(false);
+	async function searchSummoner(ID: string) {
 		if (ID) {
 			const { data } = await axios.get(
 				`https://codingtest.op.gg/api/summoner/${ID}`
@@ -21,12 +21,13 @@ const Home: NextPage = () => {
 			let getHistory = JSON.parse(localStorage.getItem("searchHistory"));
 			let arr = getHistory ? [...getHistory, ID] : [ID];
 			localStorage.setItem("searchHistory", JSON.stringify(arr));
-
+			setSearchFocus(false);
 			setSearchData(data.summoner);
 		}
 	}
-	async function searchID(preID) {
+	async function searchID(preID: string) {
 		setSummonerName(preID);
+		setSearchFocus(true);
 		if (preID) {
 			const { data } = await axios.get(
 				`https://codingtest.op.gg/api/summoner/${preID}`
@@ -40,6 +41,7 @@ const Home: NextPage = () => {
 		}
 	};
 	useEffect(() => {
+		console.log("asdf");
 		return localStorage.removeItem("searchHistory");
 	}, []);
 	return (
@@ -56,7 +58,9 @@ const Home: NextPage = () => {
 						<input
 							className="py-1.5 pr-20 pl-2 rounded-md shadow-sm text-sm w-[260px]"
 							placeholder="소환사명, 챔피언···"
-							id="inputID"
+							onFocus={() => {
+								setSearchFocus(true);
+							}}
 							onChange={(e) => {
 								searchID(e.target.value);
 							}}
@@ -70,11 +74,20 @@ const Home: NextPage = () => {
 							}}
 						/>
 					</div>
-					{previewData.name && summonerName ? (
-						<PreSearch preID={previewData} summoner={searchData} />
-					) : (
-						<SearchHistory preID={previewData} />
-					)}
+					{searchFocus ? (
+						previewData.name && summonerName ? (
+							<PreSearch
+								preID={previewData}
+								summoner={searchData}
+								reUse={searchSummoner}
+							/>
+						) : (
+							<SearchHistory
+								preID={previewData}
+								reUse={searchSummoner}
+							/>
+						)
+					) : null}
 				</div>
 			</div>
 			{searchData ? <MidBar summoner={searchData} /> : ""}

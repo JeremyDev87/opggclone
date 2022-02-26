@@ -24,8 +24,13 @@ const PreSearch: NextPage = (props) => {
 							<div
 								className="w-full flex items-center justify-between text-xs px-5 py-2 text-gray-500"
 								key={index}
+								onClick={() => {
+									props.reUse(value ? value : null);
+								}}
 							>
-								<div className="font-medium">{value}</div>
+								<div className="font-medium cursor-pointer">
+									{value}
+								</div>
 								<div className="flex justify-end items-center space-x-2">
 									<span>☆</span>
 									<span>X</span>

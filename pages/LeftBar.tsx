@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import MostChamp from "./MostChamp";
+import MostChamp from "./components/MostChamp";
 import { useEffect, useState } from "react";
 
 const LeftBar: NextPage = (props) => {

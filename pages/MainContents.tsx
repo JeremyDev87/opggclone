@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-import TeamContents from "./TeamContents";
+import TeamContents from "./components/TeamContents";
 import axios from "axios";
-import { clsMaker } from "../../libs/utils";
-import ItemInfo from "./ItemInfo";
+import { clsMaker } from "../libs/utils";
+import ItemInfo from "./components/ItemInfo";
 
 interface mainContentsData {
 	allGameCnt: number;
