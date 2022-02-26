@@ -61,7 +61,7 @@ const TeamContents: NextPage = (props) => {
 								</div>
 							);
 					  })
-					: "asdf"}
+					: ""}
 			</div>
 		</div>
 	);

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import TeamContents from "./TeamContents";
 import axios from "axios";
 import { clsMaker } from "../../libs/utils";
+import ItemInfo from "./ItemInfo";
 
 interface mainContentsData {
 	allGameCnt: number;
@@ -20,7 +21,17 @@ interface mainContentsData {
 const MainContents: NextPage = (props) => {
 	const [matchData, setMatchData] = useState({});
 	const [gameType, setGameType] = useState("전체");
-
+	const [itemShow, setItemShow] = useState({
+		over: false,
+	});
+	function getItemInfo(e, itemId) {
+		setItemShow({
+			over: true,
+			x: e.pageX + 20,
+			y: e.pageY + 20,
+			itemId: itemId,
+		});
+	}
 	async function getMatchData() {
 		const { data } = await axios.get(
 			`https://codingtest.op.gg/api/summoner/${props.summoner.name}/matches/`
@@ -332,9 +343,7 @@ const MainContents: NextPage = (props) => {
 									<div className="flex flex-col items-center space-y-1 text-[#555555] font-[11px] ml-3 w-[70px]">
 										<div className="flex flex-col items-center">
 											<span className="font-bold">
-												{value
-													? value.gameType
-													: "asdf"}
+												{value ? value.gameType : ""}
 											</span>
 											<span className="tracking-[-0.42px]">
 												하루전
@@ -419,7 +428,7 @@ const MainContents: NextPage = (props) => {
 											</div>
 										</div>
 										<div>
-											<span className="text-gray-500">
+											<span className="text-[#555555] tracking-[-0.42px] text-[11px] font-medium">
 												{value.champion.imageUrl
 													.replace(
 														"https://opgg-static.akamaized.net/images/lol/champion/",
@@ -430,23 +439,27 @@ const MainContents: NextPage = (props) => {
 										</div>
 									</div>
 									<div className="flex flex-col items-center justify-center space-y-1 w-[90px]">
-										<div className="flex flex-row space-x-1 text-base text-gray-500 font-bold">
+										<div className="flex flex-row space-x-1 text-[15px] text-[#555e5e] font-bold tracking-[-0.58px]">
 											<span>
 												{value.stats.general.kill}
 											</span>
-											<span>/</span>
-											<span className="text-red-700">
+											<span className="text-[#948e8d]">
+												/
+											</span>
+											<span className="text-[#d0021b]">
 												{value.stats.general.death}
 											</span>
-											<span>/</span>
+											<span className="text-[#948e8d]">
+												/
+											</span>
 											<span>
 												{value.stats.general.assist}
 											</span>
 										</div>
-										<div className="flex flex-row space-x-1 text-gray-500">
-											<span className="font-bold text-gray-700">
+										<div className="flex flex-row space-x-1 text-[11px] text-[#555e5e] tracking-[-0.42px]">
+											<span className="font-bold text-[#333333]">
 												{value.stats.general.kdaString}
-											</span>{" "}
+											</span>
 											<span>평점</span>
 										</div>
 										<div className="flex flex-row space-x-1 text-[10px]">
@@ -483,14 +496,14 @@ const MainContents: NextPage = (props) => {
 											</div>
 										</div>
 									</div>
-									<div className="flex flex-col items-center space-y-[1px] text-gray-500">
+									<div className="flex flex-col items-center space-y-[1px] text-[#333333] w-[100px]">
 										<span>레벨 {value.champion.level}</span>
 										<span>
 											{value.stats.general.cs} (
 											{value.stats.general.csPerMin}) CS
 										</span>
-										<span className="text-red-500">
-											킬관여{" "}
+										<span className="text-[#d0021b]">
+											킬관여
 											{
 												value.stats.general
 													.contributionForKillRate
@@ -502,7 +515,7 @@ const MainContents: NextPage = (props) => {
 										</span>
 									</div>
 
-									<div>
+									<div className="relative">
 										<div className="flex items-center justify-center">
 											<div className="grid grid-cols-3 gap-[2px]">
 												{value.items.map(
@@ -512,23 +525,37 @@ const MainContents: NextPage = (props) => {
 															1 !==
 															index ? (
 															<div
-																className="bg-slate-400 rounded-md"
+																className="bg-slate-400 rounded-md cursor-help"
 																key={index}
+																onMouseOver={(
+																	e
+																) => {
+																	getItemInfo(
+																		e,
+																		value2.imageUrl
+																			.replace(
+																				"https://opgg-static.akamaized.net/images/lol/item/",
+																				""
+																			)
+																			.replace(
+																				".png",
+																				""
+																			)
+																	);
+																}}
+																onMouseOut={() => {
+																	setItemShow(
+																		{
+																			over: false,
+																		}
+																	);
+																}}
 															>
 																<img
 																	src={
 																		value2.imageUrl
 																	}
 																	className="aspect-square h-[22px] rounded-md"
-																	id={value2.imageUrl
-																		.replace(
-																			"https://opgg-static.akamaized.net/images/lol/item/",
-																			""
-																		)
-																		.replace(
-																			".png",
-																			""
-																		)}
 																/>
 															</div>
 														) : (
@@ -553,8 +580,33 @@ const MainContents: NextPage = (props) => {
 													}
 												)}
 											</div>
+
 											<div className="ml-[2px] flex flex-col space-y-[2px]">
-												<div className="bg-slate-400 rounded-md">
+												<div
+													className="bg-slate-400 rounded-md"
+													onMouseOver={(e) => {
+														getItemInfo(
+															e,
+															value.items[
+																value.items
+																	.length - 1
+															].imageUrl
+																.replace(
+																	"https://opgg-static.akamaized.net/images/lol/item/",
+																	""
+																)
+																.replace(
+																	".png",
+																	""
+																)
+														);
+													}}
+													onMouseOut={() => {
+														setItemShow({
+															over: false,
+														});
+													}}
+												>
 													<img
 														src={
 															value.items[
@@ -573,6 +625,7 @@ const MainContents: NextPage = (props) => {
 												</div>
 											</div>
 										</div>
+
 										<div className="flex items-center justify-center space-x-1 text-gray-700">
 											<img
 												src={
@@ -621,6 +674,7 @@ const MainContents: NextPage = (props) => {
 						);
 				  })
 				: ""}
+			{itemShow.over ? <ItemInfo show={itemShow} /> : ""}
 		</div>
 	);
 };
