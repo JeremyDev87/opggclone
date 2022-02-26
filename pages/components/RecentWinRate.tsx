@@ -31,7 +31,16 @@ const RecentWinRate: NextPage = (props) => {
 									<span className="font-bold text-left truncate text-[#5e5e5e] text-[13px]">
 										{value.name}
 									</span>
-									<div className="text-[#879292] text-[13px] text-center">
+									<div
+										className={clsMaker(
+											"text-[13px] text-center",
+											value.wins /
+												(value.wins + value.losses) >=
+												0.6
+												? "text-[#c6443e]"
+												: "text-[#879292]"
+										)}
+									>
 										{Math.round(
 											(value.wins /
 												(value.wins + value.losses)) *

@@ -147,12 +147,12 @@ const MainContents: NextPage = (props) => {
 	}, [props.summoner, gameType]);
 	return (
 		<div className="shadow-sm min-w-[690px] max-w-[690px]">
-			<div className="flex flex-row items-center justify-start border-[1px] shadow-sm text-[12px] pl-2 space-x-1">
+			<div className="flex flex-row items-center justify-start border-[1px] shadow-sm text-[12px] pl-2 space-x-1 border-[#cdd2d2] bg-[#f2f2f2]">
 				<span
 					className={clsMaker(
-						"px-3 py-2  border-blue-600",
+						"px-3 py-2  border-[#1f8ecd] text-[12px]",
 						gameType === "전체"
-							? "text-blue-600 font-bold border-b-2"
+							? "text-[#1f8ecd] font-bold border-b-2"
 							: "cursor-pointer"
 					)}
 					onClick={() => {
@@ -163,9 +163,9 @@ const MainContents: NextPage = (props) => {
 				</span>
 				<span
 					className={clsMaker(
-						"px-3 py-2  border-blue-600",
+						"px-3 py-2  border-[#1f8ecd] text-[12px]",
 						gameType === "솔랭"
-							? "text-blue-600 font-bold border-b-2"
+							? "text-[#1f8ecd] font-bold border-b-2"
 							: "cursor-pointer"
 					)}
 					onClick={() => {
@@ -176,9 +176,9 @@ const MainContents: NextPage = (props) => {
 				</span>
 				<span
 					className={clsMaker(
-						"px-3 py-2  border-blue-600",
+						"px-3 py-2  border-[#1f8ecd] text-[12px]",
 						gameType === "자랭"
-							? "text-blue-600 font-bold border-b-2"
+							? "text-[#1f8ecd] font-bold border-b-2"
 							: "cursor-pointer"
 					)}
 					onClick={() => {
@@ -188,9 +188,9 @@ const MainContents: NextPage = (props) => {
 					자유랭크
 				</span>
 			</div>
-			<div className="divide-x-2 h-[158px] grid grid-cols-3 border-l-[1px] border-r-[1px] border-b-[1px] bg-gray-100">
+			<div className="divide-x-2 h-[158px] grid grid-cols-3 border-l-[1px] border-r-[1px] border-b-[1px] border-[#cdd2d2] bg-[#ededed]">
 				<div className="flex flex-col justify-start">
-					<span className="text-xs text-gray-500 font-medium p-4">
+					<span className="text-[12px] text-[#666666] font-medium p-4">
 						{matchData
 							? `${matchData.allGameCnt} 전 ${matchData.winGameCnt} 승 ${matchData.loseGameCnt} 패`
 							: ""}
@@ -210,33 +210,42 @@ const MainContents: NextPage = (props) => {
 								}deg`,
 							}}
 						>
-							<span className="text-xs font-bold absolute bg-gray-100 rounded-full aspect-square w-[64px] flex items-center justify-center">
+							<span className="text-[14px] text-[#555555] font-bold absolute bg-gray-100 rounded-full aspect-square w-[64px] flex items-center justify-center">
 								{matchData ? matchData.winRate : null}%
 							</span>
 						</div>
 						<div className="flex flex-col text-sm items-center">
-							<div className="text-xs">
-								<span>
+							<div className="text-[11px] flex space-x-[1px]">
+								<span className="text-[#333333] font-bold">
 									{matchData ? matchData.killRate : null}
-								</span>{" "}
-								/{" "}
-								<span>
+								</span>
+								<span className="text-[#999999]">/</span>
+								<span className="text-[#c6443e] font-bold">
 									{matchData ? matchData.deathRate : null}
-								</span>{" "}
-								/{" "}
-								<span>
+								</span>
+								<span className="text-[#999999]">/</span>
+								<span className="text-[#333333] font-bold">
 									{matchData ? matchData.assiRate : null}
 								</span>
 							</div>
-							<div>
-								<span className="text-green-700">
-									{matchData ? matchData.kda : null}
+							<div className="text-[16px]">
+								<span
+									className={clsMaker(
+										"font-bold",
+										matchData?.kda > 5
+											? "text-[#e19205]"
+											: matchData?.kda > 4
+											? "text-[#1f8ecd]"
+											: matchData?.kda > 3
+											? "text-[#2daf7f]"
+											: "text-[#333333]"
+									)}
+								>
+									{matchData ? matchData.kda : null}:1
 								</span>
-								:1(
-								<span className="text-red-500">
-									{matchData.contributionForKillRate}%
+								<span className="text-[#c6443e]">
+									({matchData.contributionForKillRate}%)
 								</span>
-								)
 							</div>
 						</div>
 					</div>
@@ -257,12 +266,12 @@ const MainContents: NextPage = (props) => {
 												className="rounded-full"
 											/>
 										</div>
-										<div className="text-gray-700">
-											<div className="text-sm">
+										<div className="text-[#333333]">
+											<div className="text-[14px]">
 												{value.name}
 											</div>
-											<div className="flex flex-row">
-												<span className="text-red-500 mr-1">
+											<div className="flex flex-row text-[11px] text-[#555555]">
+												<span className="text-[#c6443e] mr-1">
 													{value.winRate}%
 												</span>
 												<div className="flex flex-row space-x-2">
@@ -270,7 +279,18 @@ const MainContents: NextPage = (props) => {
 														({value.winCnt}승{" "}
 														{value.loseCnt} 패)
 													</span>
-													<span className="text-yellow-500 font-bold">
+													<span
+														className={clsMaker(
+															"font-bold",
+															value.kda > 5
+																? "text-[#e19205]"
+																: value.kda > 4
+																? "text-[#1f8ecd]"
+																: value.kda > 3
+																? "text-[#2daf7f]"
+																: "text-[#333333]"
+														)}
+													>
 														{value.kda} 평점
 													</span>
 												</div>
@@ -281,55 +301,61 @@ const MainContents: NextPage = (props) => {
 						  })
 						: null}
 				</div>
-				<div className="flex flex-col items-start justify-start px-3 py-4 space-y-3 text-xs text-gray-500">
+				<div className="flex flex-col items-start justify-start px-3 py-4 space-y-3 text-xs text-[#666666]">
 					<div>
-						<span>선호 포지션 (랭크)</span>
+						<span className="text-[12px]">선호 포지션 (랭크)</span>
 					</div>
-					{matchData.position
-						? matchData.position.map((value, index) => {
-								return (
-									<div
-										className="flex flex-row items-start justify-start space-x-3"
-										key={index}
-									>
-										<div>
-											<Image
-												src={
-													value.name === "Top"
-														? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-top.png"
-														: value.name ===
-														  "Jungle"
-														? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-jungle.png"
-														: value.name ===
-														  "Middle"
-														? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-mid.png"
-														: value.name ===
-														  "Bottom"
-														? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-adc.png"
-														: value.name ===
-														  "Support"
-														? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-support.png"
-														: ""
-												}
-												width={34}
-												height={34}
-											/>
-										</div>
-										<div className="flex flex-col items-start">
-											<span className="text-sm">
-												{value.name}
+					{matchData.position?.map((value, index) => {
+						return (
+							<div
+								className="flex flex-row items-start justify-start space-x-3"
+								key={index}
+							>
+								<div>
+									<Image
+										src={
+											value.name === "Top"
+												? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-top.png"
+												: value.name === "Jungle"
+												? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-jungle.png"
+												: value.name === "Middle"
+												? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-mid.png"
+												: value.name === "Bottom"
+												? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-adc.png"
+												: value.name === "Support"
+												? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-support.png"
+												: ""
+										}
+										width={34}
+										height={34}
+									/>
+								</div>
+								<div className="flex flex-col items-start">
+									<span className="text-[14px] text-[#333333]">
+										{value.name}
+									</span>
+									<div className="flex flex-row items-center">
+										<span className="text-[#1f8ecd] font-bold mr-1">
+											{value.playRate}%
+										</span>
+										<div className="h-[10px] w-[1px] mx-2 border-[1px] border-[#cdd2d2]"></div>
+										<span
+											className={
+												value.winRate >= 60
+													? "text-[#c6443e]"
+													: ""
+											}
+										>
+											<span className="mr-1 text-[#666666]">
+												승률
 											</span>
-											<div className="flex flex-row space-x-2">
-												<span>{value.playRate}%</span>
-												<span>
-													승률 {value.winRate}%
-												</span>
-											</div>
-										</div>
+											{value?.winRate}%
+										</span>
 									</div>
-								);
-						  })
-						: null}
+								</div>
+							</div>
+						);
+					})}
 				</div>
 			</div>
 			{matchData.games

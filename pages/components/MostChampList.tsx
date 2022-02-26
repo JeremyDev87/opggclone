@@ -12,7 +12,7 @@ const MostChampList: NextPage = (props) => {
 						.map((value, index) => {
 							return (
 								<div
-									className="flex flex-row items-center justify-around text-xs text-gray-400 py-1 text-[11px]"
+									className="flex flex-row items-center justify-around text-xs text-[#5e5e5e] py-1 text-[11px]"
 									key={index}
 								>
 									<div>
@@ -30,7 +30,7 @@ const MostChampList: NextPage = (props) => {
 										/>
 									</div>
 									<div className="flex flex-col items-start justify-start w-[66px]">
-										<span className="font-bold text-gray-600 text-[13px] w-[100px]">
+										<span className="font-bold text-[#5e5e5e] text-[13px] w-[100px]">
 											{value.name}
 										</span>
 										<span>

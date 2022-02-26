@@ -16,17 +16,17 @@ const MidBar: NextPage = (props) => {
 
 	return (
 		<div className="mx-[200px] mt-5">
-			<div className="flex items-start space-x-2">
+			<div className="flex items-start space-x-[7px]">
 				{summonerInfo.preTier.map((value) => {
 					return (
 						<div
-							className="bg-slate-200 rounded-md shadow-sm text-xs p-1"
+							className="bg-[#e0e3e3] border-[1px] border-[#d0d3d4] text-[#657070] rounded-md shadow-sm text-[11px] tracking-[-0.42px] h-[20px] min-w-[58px] flex items-center justify-center"
 							key={value.season}
 						>
-							<span className="font-medium mr-1">
-								S{value.season}
+							<span className="font-bold">S{value.season}</span>
+							<span className="font-medium ml-1">
+								{value.tier}
 							</span>
-							{value.tier}
 						</div>
 					);
 				})}
@@ -55,7 +55,7 @@ const MidBar: NextPage = (props) => {
 							width={44}
 							height={24}
 						/>
-						<span className="absolute z-30 bg-transparent text-yellow-300 text-base p-1">
+						<span className="absolute z-30 bg-transparent text-[#eabd56] text-[14px]">
 							{props.summoner.level}
 						</span>
 					</div>
