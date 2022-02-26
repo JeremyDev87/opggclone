@@ -28,31 +28,29 @@ const RecentWinRate: NextPage = (props) => {
 										)}
 										%
 									</div>
-									<div className="col-span-3 w-full grid grid-cols-10 h-[24px] relative">
+									<div className="col-span-3 w-full h-[24px] relative">
 										<div
-											className={clsMaker(
-												"bg-blue-500 rounded-l-md shadow-sm",
-												`winRate-${Math.round(
-													(value.wins /
+											className="bg-[#1f8ecd] rounded-l-md shadow-sm absolute h-[20px] left-0"
+											style={{
+												width: `${Math.round(
+													(value.wins * 100) /
 														(value.wins +
-															value.losses)) *
-														10
-												)}`
-											)}
+															value.losses)
+												)}%`,
+											}}
 										></div>
 										<div
-											className={clsMaker(
-												"bg-red-500 rounded-r-md shadow-sm",
-												`winRate-${
-													10 -
+											className="bg-[#ee5a52] rounded-r-md shadow-sm absolute h-[20px] right-0"
+											style={{
+												width: `${
+													100 -
 													Math.round(
-														(value.wins /
+														(value.wins * 100) /
 															(value.wins +
-																value.losses)) *
-															10
+																value.losses)
 													)
-												}`
-											)}
+												}%`,
+											}}
 										></div>
 										<div className="absolute w-full h-full flex items-center justify-between px-1 text-gray-50">
 											<span>{value.wins}승</span>
@@ -64,43 +62,6 @@ const RecentWinRate: NextPage = (props) => {
 					  })
 					: null}
 			</div>
-			<style jsx>
-				{`
-					.winRate-0 {
-						grid-column: span 0 / span 0;
-					}
-					.winRate-1 {
-						grid-column: span 1 / span 1;
-					}
-					.winRate-2 {
-						grid-column: span 2 / span 2;
-					}
-					.winRate-3 {
-						grid-column: span 3 / span 3;
-					}
-					.winRate-4 {
-						grid-column: span 4 / span 4;
-					}
-					.winRate-5 {
-						grid-column: span 5 / span 5;
-					}
-					.winRate-6 {
-						grid-column: span 6 / span 6;
-					}
-					.winRate-7 {
-						grid-column: span 7 / span 7;
-					}
-					.winRate-8 {
-						grid-column: span 8 / span 8;
-					}
-					.winRate-9 {
-						grid-column: span 9 / span 9;
-					}
-					.winRate-10 {
-						grid-column: span 10 / span 10;
-					}
-				`}
-			</style>
 		</div>
 	);
 };
