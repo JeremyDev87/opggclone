@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Image from "next/image";
 import { useState } from "react";
 import { clsMaker } from "../../libs/utils";
 
@@ -10,17 +11,27 @@ const RecentWinRate: NextPage = (props) => {
 					? props.data.map((value, index) => {
 							return (
 								<div
-									className="grid grid-cols-6 items-center py-1"
+									className="grid grid-cols-6 items-center py-1 h-[48px]"
 									key={index}
 								>
-									<img
-										src={value.imageUrl}
-										className="w-[32px] rounded-full mx-auto"
-									/>
-									<span className="font-bold text-left truncate">
+									<div className="ml-2">
+										<Image
+											src={
+												value.imageUrl.includes(
+													"https://"
+												)
+													? value.imageUrl
+													: "https:" + value.imageUrl
+											}
+											width={32}
+											height={32}
+											className="rounded-full"
+										/>
+									</div>
+									<span className="font-bold text-left truncate text-[#5e5e5e] text-[13px]">
 										{value.name}
 									</span>
-									<div className="text-gray-500 text-center">
+									<div className="text-[#879292] text-[13px] text-center">
 										{Math.round(
 											(value.wins /
 												(value.wins + value.losses)) *

@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Image from "next/image";
 
 const MostChampList: NextPage = (props) => {
 	return (
@@ -15,9 +16,17 @@ const MostChampList: NextPage = (props) => {
 									key={index}
 								>
 									<div>
-										<img
-											src={value.imageUrl}
-											className="w-[45px] rounded-full"
+										<Image
+											src={
+												value.imageUrl.includes(
+													"https://"
+												)
+													? value.imageUrl
+													: "https:" + value.imageUrl
+											}
+											width={45}
+											height={45}
+											className="rounded-full"
 										/>
 									</div>
 									<div className="flex flex-col items-start justify-start w-[66px]">

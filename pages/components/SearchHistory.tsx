@@ -9,7 +9,7 @@ const PreSearch: NextPage = (props) => {
 		setSearchHistory(getHistory);
 	}, [props.preID]);
 	return (
-		<div className="bg-gray-50 border-[1px]  border-gray-500 w-[260px] mt-1 rounded-sm shadow-sm flex flex-col items-center">
+		<div className="bg-gray-50 border-[1px]  border-gray-500 w-[260px] mt-2 rounded-sm shadow-sm flex flex-col items-center">
 			<div className="flex items-center justify-around text-sm w-full border-b-2">
 				<div className="w-1/2 py-2 text-center text-gray-500">
 					최근검색

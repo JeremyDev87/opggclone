@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Image from "next/image";
 
 const MidBar: NextPage = (props) => {
 	let summonerInfo = {
@@ -32,18 +33,27 @@ const MidBar: NextPage = (props) => {
 			</div>
 			<div className="mt-5 flex items-center justify-start">
 				<div className="aspect-square w-[120px] relative">
-					<img
-						src={summonerInfo.profileBorder}
-						className="absolute aspect-square w-[120px] z-10"
-					/>
-					<img
-						src={summonerInfo.profileUrl}
-						className="aspect-square w-[100px] mx-auto translate-y-3"
-					/>
-					<div className="absolute w-[120px] z-20 relative flex items-center justify-center">
-						<img
+					<div className="absolute z-10">
+						<Image
+							src={summonerInfo.profileBorder}
+							width={120}
+							height={120}
+						/>
+					</div>
+					<div className="absolute aspect-square w-[120px] flex items-center justify-center">
+						<Image
+							src={summonerInfo.profileUrl}
+							width={100}
+							height={100}
+							className="mx-auto"
+						/>
+					</div>
+
+					<div className="absolute w-[120px] h-[125px] z-20 relative flex items-end justify-center">
+						<Image
 							src="https://s-lol-web.op.gg/static/images/site/summoner/bg-levelbox.png"
-							className=""
+							width={44}
+							height={24}
 						/>
 						<span className="absolute z-30 bg-transparent text-yellow-300 text-base p-1">
 							{props.summoner.level}

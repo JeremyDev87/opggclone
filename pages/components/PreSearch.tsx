@@ -1,4 +1,5 @@
 import { NextPage } from "next";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { clsMaker } from "../../libs/utils";
 
@@ -10,7 +11,7 @@ const SearchHistory: NextPage = (props) => {
 	return (
 		<div
 			className={clsMaker(
-				"bg-gray-50 border-[1px]  border-gray-500 w-[260px] mt-1 p-2 rounded-sm shadow-sm flex items-center space-x-3 cursor-pointer",
+				"bg-gray-50 border-[1px]  border-gray-500 w-[260px] mt-2 p-2 rounded-sm shadow-sm flex items-center space-x-3 cursor-pointer",
 				!preID ? "hidden" : ""
 			)}
 			onClick={() => {
@@ -18,8 +19,8 @@ const SearchHistory: NextPage = (props) => {
 			}}
 		>
 			<img
-				src={preID ? preID.profileImageUrl : ""}
-				className="aspect-square w-[36px] rounded-full"
+				src={preID ? preID.profileImageUrl : null}
+				className="rounded-full w-[36px] aspect-square"
 			/>
 			<div className="flex flex-col text-sm text-gray-500">
 				<span className="text-gray-700 font-medium">

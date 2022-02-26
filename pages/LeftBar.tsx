@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import MostChamp from "./components/MostChamp";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const LeftBar: NextPage = (props) => {
 	return (
@@ -13,13 +14,14 @@ const LeftBar: NextPage = (props) => {
 								key={value.tierRank.name}
 							>
 								<div className="px-3 w-2/5 flex justify-center">
-									<img
+									<Image
 										src={
 											props.summoner.leagues
 												? value.tierRank.imageUrl
 												: ""
 										}
-										className="w-[104px]"
+										width={104}
+										height={104}
 									/>
 								</div>
 								<div className="flex flex-col">

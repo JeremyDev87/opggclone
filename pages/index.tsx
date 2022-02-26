@@ -7,9 +7,10 @@ import { useState, useEffect } from "react";
 import PreSearch from "./components/PreSearch";
 import SearchHistory from "./components/SearchHistory";
 import { clsMaker } from "../libs/utils";
+import Image from "next/image";
 
 const Home: NextPage = () => {
-	const [summonerName, setSummonerName] = useState(["Hide on bush"]);
+	const [summonerName, setSummonerName] = useState("Hide on bush");
 	const [searchData, setSearchData] = useState("");
 	const [previewData, setPreviewData] = useState("");
 	const [searchFocus, setSearchFocus] = useState(false);
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
 				`https://codingtest.op.gg/api/summoner/${ID}`
 			);
 			let getHistory = JSON.parse(localStorage.getItem("searchHistory"));
+
 			let arr = getHistory ? [...getHistory, ID] : [ID];
 			localStorage.setItem("searchHistory", JSON.stringify(arr));
 			setSearchFocus(false);
@@ -41,22 +43,22 @@ const Home: NextPage = () => {
 		}
 	};
 	useEffect(() => {
-		console.log("asdf");
 		return localStorage.removeItem("searchHistory");
 	}, []);
 	return (
 		<div className="h-[1819px]">
 			<div className="bg-[#1ea1f7] h-[97px]">
 				<div className="w-full pt-3 pl-3">
-					<img
-						src="https://s-lol-web.op.gg/images/icon/opgglogo.svg"
-						className="w-20"
+					<Image
+						src={"https://s-lol-web.op.gg/images/icon/opgglogo.svg"}
+						width={65}
+						height={16}
 					/>
 				</div>
-				<div className="flex flex-col items-end pr-20">
-					<div className="flex items-center justify-end bg-transparent relative pt-3">
+				<div className="flex flex-col items-end pr-[200px]">
+					<div className="flex items-center justify-end bg-transparent relative py-1 w-[260px]">
 						<input
-							className="py-1.5 pr-20 pl-2 rounded-md shadow-sm text-sm w-[260px]"
+							className="py-1.5 pr-20 pl-2 rounded-md shadow-sm text-sm w-[260px] absolute"
 							placeholder="소환사명, 챔피언···"
 							onFocus={() => {
 								setSearchFocus(true);
@@ -66,9 +68,13 @@ const Home: NextPage = () => {
 							}}
 							onKeyPress={keyPress}
 						/>
-						<img
-							src="https://s-lol-web.op.gg/images/icon/icon-gg.svg"
-							className="w-6 absolute mr-2 cursor-pointer"
+						<Image
+							src={
+								"https://s-lol-web.op.gg/images/icon/icon-gg.svg"
+							}
+							height={14}
+							width={50}
+							className={"absolute right-10 cursor-pointer pr-5"}
 							onClick={() => {
 								searchSummoner(summonerName);
 							}}

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { NextPage } from "next";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { clsMaker } from "../../libs/utils";
 
@@ -16,16 +17,18 @@ const TeamContents: NextPage = (props) => {
 		getTeamData();
 	}, [props.summoner, props.gameId]);
 	return (
-		<div className="flex space-x-2">
+		<div className="flex space-x-2 w-[150px]">
 			<div className="flex flex-col space-y-[1px] justify-center text-gray-500 text-[11px] tracking-[-0.42px]">
 				{teamData.teams
 					? teamData.teams[0].players.map((value, index) => {
 							return (
 								<div className="flex space-x-1" key={index}>
-									<img
+									<Image
 										src={value.champion.imageUrl}
+										width={16}
+										height={16}
 										className={clsMaker(
-											"aspect-square h-[16px]",
+											"",
 											props.summoner ===
 												value.summonerName
 												? "rounded-full"
@@ -45,10 +48,12 @@ const TeamContents: NextPage = (props) => {
 					? teamData.teams[1].players.map((value, index) => {
 							return (
 								<div className="flex space-x-1" key={index}>
-									<img
+									<Image
 										src={value.champion.imageUrl}
+										width={16}
+										height={16}
 										className={clsMaker(
-											"aspect-square h-[16px]",
+											"",
 											props.summoner ===
 												value.summonerName
 												? "rounded-full"

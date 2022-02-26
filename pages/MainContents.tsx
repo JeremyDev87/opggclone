@@ -4,6 +4,7 @@ import TeamContents from "./components/TeamContents";
 import axios from "axios";
 import { clsMaker } from "../libs/utils";
 import ItemInfo from "./components/ItemInfo";
+import Image from "next/image";
 
 interface mainContentsData {
 	allGameCnt: number;
@@ -112,7 +113,9 @@ const MainContents: NextPage = (props) => {
 				),
 				mostChamp: data.champions.map((value) => {
 					return {
-						imgUrl: value.imageUrl,
+						imgUrl: value.imageUrl.includes("https://")
+							? value.imageUrl
+							: "https:" + value.imageUrl,
 						name: value.name,
 						winRate: Math.round((value.wins / value.games) * 100),
 						winCnt: value.wins,
@@ -134,6 +137,7 @@ const MainContents: NextPage = (props) => {
 				}),
 				games: data.games,
 			};
+			console.log(setData);
 			setMatchData(setData);
 		}
 	}
@@ -246,9 +250,11 @@ const MainContents: NextPage = (props) => {
 										key={index}
 									>
 										<div>
-											<img
+											<Image
 												src={value.imgUrl}
-												className="w-[34px] aspect-square rounded-full"
+												width={34}
+												height={34}
+												className="rounded-full"
 											/>
 										</div>
 										<div className="text-gray-700">
@@ -287,7 +293,7 @@ const MainContents: NextPage = (props) => {
 										key={index}
 									>
 										<div>
-											<img
+											<Image
 												src={
 													value.name === "Top"
 														? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-top.png"
@@ -305,7 +311,8 @@ const MainContents: NextPage = (props) => {
 														? "https://s-lol-web.op.gg/static/images/site/common/icon-mostposition-support.png"
 														: ""
 												}
-												className="aspect-square h-[34px]"
+												width={34}
+												height={34}
 											/>
 										</div>
 										<div className="flex flex-col items-start">
@@ -388,25 +395,28 @@ const MainContents: NextPage = (props) => {
 											</span>
 										</div>
 									</div>
-									<div className="flex flex-col space-y-2 items-center justify-center">
+									<div className="flex flex-col items-center justify-center">
 										<div className="flex flex-row space-x-1">
 											<div>
-												<img
+												<Image
 													src={
 														value.champion.imageUrl
 													}
-													className="rounded-full aspect-square h-[46px]"
+													width={46}
+													height={46}
+													className="rounded-full"
 												/>
 											</div>
 											<div className="flex flex-col space-y-1">
 												{value.spells.map(
 													(value, index) => {
 														return (
-															<img
+															<Image
 																src={
 																	value.imageUrl
 																}
-																className="aspect-square h-[22px]"
+																width={22}
+																height={22}
 																key={index}
 															/>
 														);
@@ -417,10 +427,11 @@ const MainContents: NextPage = (props) => {
 												{value.peak.map(
 													(value, index) => {
 														return (
-															<img
+															<Image
 																src={value}
+																width={22}
+																height={22}
 																key={index}
-																className="aspect-square h-[22px]"
 															/>
 														);
 													}
@@ -515,7 +526,7 @@ const MainContents: NextPage = (props) => {
 										</span>
 									</div>
 
-									<div className="relative">
+									<div className="relative w-[100px]">
 										<div className="flex items-center justify-center">
 											<div className="grid grid-cols-3 gap-[2px]">
 												{value.items.map(
@@ -525,7 +536,7 @@ const MainContents: NextPage = (props) => {
 															1 !==
 															index ? (
 															<div
-																className="bg-slate-400 rounded-md cursor-help"
+																className="bg-slate-400 rounded-md cursor-help aspect-square h-[22px]"
 																key={index}
 																onMouseOver={(
 																	e
@@ -551,11 +562,13 @@ const MainContents: NextPage = (props) => {
 																	);
 																}}
 															>
-																<img
+																<Image
 																	src={
 																		value2.imageUrl
 																	}
-																	className="aspect-square h-[22px] rounded-md"
+																	width={22}
+																	height={22}
+																	className="rounded-md"
 																/>
 															</div>
 														) : (
@@ -583,7 +596,7 @@ const MainContents: NextPage = (props) => {
 
 											<div className="ml-[2px] flex flex-col space-y-[2px]">
 												<div
-													className="bg-slate-400 rounded-md"
+													className="bg-slate-400 rounded-md h-[22px] aspect-square"
 													onMouseOver={(e) => {
 														getItemInfo(
 															e,
@@ -607,33 +620,43 @@ const MainContents: NextPage = (props) => {
 														});
 													}}
 												>
-													<img
+													<Image
 														src={
 															value.items[
 																value.items
 																	.length - 1
 															].imageUrl
 														}
-														className="aspect-square h-[22px] rounded-md"
+														width={22}
+														height={22}
+														className="rounded-md cursor-help"
 													/>
 												</div>
-												<div className="bg-slate-400 rounded-full">
-													<img
-														src="https://s-lol-web.op.gg/static/images/icon/common/icon-buildblue-p.png?v=1645189214748"
-														className="aspect-square h-[22px] rounded-full"
+												<div className="bg-slate-400 rounded-full h-[22px] aspect-square">
+													<Image
+														src={
+															value.isWin
+																? "https://s-lol-web.op.gg/static/images/icon/common/icon-buildblue-p.png?v=1645189214748"
+																: "https://s-lol-web.op.gg/static/images/icon/common/icon-buildred-p.png?v=1645189214748"
+														}
+														width={22}
+														height={22}
+														className="rounded-full"
 													/>
 												</div>
 											</div>
 										</div>
 
-										<div className="flex items-center justify-center space-x-1 text-gray-700">
-											<img
+										<div className="flex items-center justify-center space-x-1 text-black tracking-[-0.42px] mt-2">
+											<Image
 												src={
 													value.isWin
 														? "https://s-lol-web.op.gg/static/images/icon/common/icon-ward-blue.png?v=1645189214748"
 														: "https://s-lol-web.op.gg/static/images/icon/common/icon-ward-red.png?v=1645189214748"
 												}
-												className="aspect-square rounded-full h-[16px]"
+												width={16}
+												height={16}
+												className="rounded-full"
 											/>
 											<span>제어 와드</span>
 											<span>
@@ -650,7 +673,7 @@ const MainContents: NextPage = (props) => {
 									/>
 									<div
 										className={clsMaker(
-											"h-[96px] w-[30px] flex items-end justify-center border-[1px] ",
+											"h-[96px] w-[30px] flex items-end justify-center border-[1px] pb-2",
 											value.needRenew
 												? "bg-[#a7a7a7] border-[#999999]"
 												: value.isWin
@@ -658,7 +681,7 @@ const MainContents: NextPage = (props) => {
 												: "bg-[#e89c95] border-[#c8817c]"
 										)}
 									>
-										<img
+										<Image
 											src={
 												value.needRenew
 													? "https://s-lol-web.op.gg/static/images/icon/common/icon-viewdetail-grey.png?v=1645189214748"
@@ -666,7 +689,8 @@ const MainContents: NextPage = (props) => {
 													? "https://s-lol-web.op.gg/static/images/icon/common/icon-viewdetail-blue.png?v=1645189214748"
 													: "https://s-lol-web.op.gg/static/images/icon/common/icon-viewdetail-red.png?v=1645189214748"
 											}
-											className="p-2"
+											height={10}
+											width={13}
 										/>
 									</div>
 								</div>
